@@ -7,8 +7,6 @@
 </template>
 
 <script setup>
-import { onUnmounted, ref, watchEffect } from 'vue';
-
 defineProps({
   items: {
     type: Array,

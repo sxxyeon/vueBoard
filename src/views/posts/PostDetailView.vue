@@ -46,7 +46,7 @@ const post = ref({});
 
 const fetchPost = async () => {
   try {
-    const { data, headers } = await getPostById(id.value);
+    const { data } = await getPostById(id.value);
 
     //post.value = { ...data };
     setPost(data);
