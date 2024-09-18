@@ -17,5 +17,5 @@ export async function updatePost(id, data) {
   return await posts.patch(id, data);
 }
 export async function deletePost(id) {
-  return await posts.delete(id);
+  return await posts.delete(`/${id}`);
 }
