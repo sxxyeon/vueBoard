@@ -26,7 +26,7 @@
                 ></button>
               </slot>
             </div>
-            <div class="modal-body"><slot></slot></div>
+            <div class="modal-body b"><slot></slot></div>
             <div class="modal-footer align-center justify-content-center">
               <slot name="actions"> </slot>
             </div>
@@ -50,6 +50,9 @@ defineEmits(['close', 'update:modelValue']);
 #modal {
   width: 100vw;
   height: 100vh;
+}
+.modal-body {
+  box-sizing: border-box;
 }
 .modal.show .modal-dialog {
   position: fixed;
