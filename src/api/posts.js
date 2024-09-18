@@ -6,7 +6,7 @@ export function getPosts(params) {
 
 export async function getPostById(id) {
   //return await posts.get(`/${id}`);
-  return await posts.get(id);
+  return await posts.get(`/${String(id)}`);
 }
 
 export async function createPost(data) {
@@ -14,8 +14,8 @@ export async function createPost(data) {
 }
 export async function updatePost(id, data) {
   //return await posts.put(id, data);
-  return await posts.patch(id, data);
+  return await posts.patch(`/${String(id)}`, data);
 }
 export async function deletePost(id) {
-  return await posts.delete(`/${id}`);
+  return await posts.delete(`/${String(id)}`);
 }

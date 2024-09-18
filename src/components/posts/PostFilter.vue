@@ -16,9 +16,9 @@
           class="form-select"
           @input="$emit('update:limit', $event.target.value)"
         >
-          <option value="3">3개씩</option>
-          <option value="6">6개씩</option>
           <option value="9">9개씩</option>
+          <option value="6">6개씩</option>
+          <option value="3">3개씩</option>
         </select>
       </div>
     </div>
