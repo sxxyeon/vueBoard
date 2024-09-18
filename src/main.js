@@ -4,6 +4,7 @@ import App from './App.vue';
 import router from '@/router';
 
 createApp(App).use(router).mount('#app');
+console.log('API Base URL:', import.meta.env.VITE_APP_API_URL);
 
 import 'bootstrap/dist/js/bootstrap.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';

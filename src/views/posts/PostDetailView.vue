@@ -30,8 +30,8 @@
 
 <script setup>
 import { useRoute, useRouter } from 'vue-router';
-import { getPostById, getPosts } from '@/api/posts';
-import { computed, ref, toRefs, watch, watchEffect } from 'vue';
+import { getPostById } from '@/api/posts';
+import { ref, toRefs, watch, watchEffect } from 'vue';
 import { deletePost } from '@/api/posts';
 
 const props = defineProps({
