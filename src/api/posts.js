@@ -1,7 +1,7 @@
 import { posts } from '.';
 
 export function getPosts(params) {
-  return posts.get('/', { params });
+  return posts.get({ params });
 }
 
 export async function getPostById(id) {
