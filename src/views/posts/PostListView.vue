@@ -66,7 +66,7 @@ const params = ref({
   _sort: 'createdAt',
   _order: 'desc',
   _page: 1,
-  _limit: 3,
+  _limit: 9,
   title_like: ''
 });
 const totalCount = ref(0);
