@@ -1,8 +1,10 @@
 <template>
   <header>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-      <div class="container-fluid">
-        <RouterLink to="/" class="navbar-brand">게시판</RouterLink>
+      <div class="container">
+        <RouterLink to="/" class="navbar-brand"
+          ><img src="/img/logo.png" height="40px"
+        /></RouterLink>
         <!-- 
         <button
           class="navbar-toggler"

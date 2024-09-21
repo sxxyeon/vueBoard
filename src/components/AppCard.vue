@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card bg-white rounded hover-zoom">
     <div v-if="$slots.header" class="card-header">
       <slot name="header"></slot>
     </div>
@@ -14,12 +14,16 @@
 
 <style scoped>
 .card {
-  height: 180px;
+  height: 200px;
+  border: none;
+  transition: transform 0.2s;
   cursor: pointer;
+  box-shadow: 0 1px 10px rgb(0, 0, 0, 20%);
 }
-.card-body {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
+.card:hover {
+  transform: scale(1.02);
+}
+.card-footer {
+  border-top: 1px solid #eee;
 }
 </style>

@@ -5,7 +5,7 @@
     <template #footer>
       <div class="d-flex flex-row-reverse">
         <button class="btn p-0" @click.stop="$emit('modal')">
-          <i class="bi bi-arrow-down-right-circle-fill"></i>
+          <i class="bi bi-arrow-down-right-circle-fill" style="color: #888"></i>
         </button>
       </div>
     </template>

@@ -1,22 +1,21 @@
 <template>
   <div>
-    <div class="d-flex justify-content-between align-center">
+    <div class="d-flex justify-content-between align-items-center mb-4">
       <h2 class="tit">게시글 목록</h2>
       <button
-        class="btn btn-dark btn-sm"
-        type="button"
+        class="btn btn-outline-primary btn-sm"
         @click="router.push(`/create`)"
       >
         글쓰기
       </button>
     </div>
 
-    <hr class="my-4" />
     <PostFilter
       v-model:title="params.title_like"
       v-model:limit="params._limit"
-    ></PostFilter>
-    <hr class="my-4" />
+    />
+    <hr class="my-4" style="color: #888" />
+
     <AppGrid :items="posts">
       <template #default="{ item }">
         <PostItem
@@ -25,7 +24,7 @@
           :created-at="item.createdAt"
           @click="goPage(item.id)"
           @modal="openModal(item)"
-        ></PostItem>
+        />
       </template>
     </AppGrid>
 
@@ -33,7 +32,8 @@
       :current-page="params._page"
       :page-count="pageCount"
       @page="(page) => (params._page = page)"
-    ></AppPagination>
+    />
+
     <Teleport to="#modal">
       <PostModal
         v-model="show"
@@ -42,14 +42,13 @@
         :created-at="modalCreatedAt"
       />
     </Teleport>
-    <hr class="my-5" />
+    <hr class="my-4" style="color: #888" />
   </div>
 </template>
 
 <script setup>
 import PostItem from '@/components/posts/PostItem.vue';
 import PostDetailView from './PostDetailView.vue';
-import AppCard from '@/components/AppCard.vue';
 import AppGrid from '@/components/AppGrid.vue';
 import AppPagination from '@/components/AppPagination.vue';
 import PostFilter from '@/components/posts/PostFilter.vue';
@@ -60,8 +59,6 @@ import { useRouter } from 'vue-router';
 
 const posts = ref([]);
 const router = useRouter();
-
-// pagination
 const params = ref({
   _sort: 'createdAt',
   _order: 'desc',
@@ -75,7 +72,6 @@ const pageCount = computed(() =>
 );
 
 const fetchPosts = async () => {
-  //posts.value = await getPosts();
   try {
     const { data, headers } = await getPosts(params.value);
     posts.value = data;
@@ -86,25 +82,16 @@ const fetchPosts = async () => {
 };
 
 fetchPosts();
-
 watchEffect(fetchPosts);
 
 const goPage = (id) => {
-  //router.push(`posts/${id}`);
-  // http://localhost:5173/posts/1?search=hello#world!
   router.push({
     name: 'PostDetail',
-    params: {
-      id
-    }
-    // query: {
-    //   search: 'hello'
-    // },
-    // hash: '#world!'
+    params: { id }
   });
 };
 
-//modal
+// Modal functionality
 const show = ref(false);
 const modalTitle = ref('');
 const modalContent = ref('');
@@ -112,20 +99,25 @@ const modalCreatedAt = ref('');
 
 const openModal = ({ title, content, createdAt }) => {
   show.value = true;
-
   modalTitle.value = title;
   modalContent.value = content;
   modalCreatedAt.value = createdAt;
 };
-const closeModal = () => {
-  show.value = false;
-};
 </script>
 
-<style>
+<style scoped>
 .tit {
-  font-size: 20px;
+  font-size: 24px;
   margin: 0;
   font-weight: bold;
+  color: #212529;
+}
+.btn-outline-primary {
+  border-color: #5c5c5c;
+  color: #5c5c5c;
+}
+.btn-outline-primary:hover {
+  background-color: #5c5c5c;
+  color: white;
 }
 </style>
