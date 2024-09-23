@@ -1,20 +1,11 @@
 <template>
   <div>
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h2 class="tit">게시글 목록</h2>
-      <button
-        class="btn btn-outline-primary btn-sm"
-        @click="router.push(`/create`)"
-      >
-        글쓰기
-      </button>
-    </div>
+    <div class="d-flex justify-content-between align-items-center mb-4"></div>
 
     <PostFilter
       v-model:title="params.title_like"
       v-model:limit="params._limit"
     />
-    <hr class="my-4" style="color: #888" />
 
     <AppGrid :items="posts">
       <template #default="{ item }">
@@ -40,6 +31,8 @@
         :title="modalTitle"
         :content="modalContent"
         :created-at="modalCreatedAt"
+        :post-id="modalPostId"
+        @detail="goPage"
       />
     </Teleport>
     <hr class="my-4" style="color: #888" />
@@ -91,17 +84,19 @@ const goPage = (id) => {
   });
 };
 
-// Modal functionality
+// Modal 관련 상태
 const show = ref(false);
 const modalTitle = ref('');
 const modalContent = ref('');
 const modalCreatedAt = ref('');
+const modalPostId = ref(null); // postId 추가
 
-const openModal = ({ title, content, createdAt }) => {
+const openModal = ({ title, content, createdAt, id }) => {
   show.value = true;
   modalTitle.value = title;
   modalContent.value = content;
   modalCreatedAt.value = createdAt;
+  modalPostId.value = id; // postId 설정
 };
 </script>
 

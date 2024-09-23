@@ -1,6 +1,11 @@
 <template>
   <div class="row g-4">
-    <div v-for="(item, index) in items" :key="index" :class="colClass">
+    <div
+      v-for="(item, index) in items"
+      :key="index"
+      :class="colClass"
+      class="col-lg-4"
+    >
       <slot :item="item" :index="index"></slot>
     </div>
   </div>
@@ -14,7 +19,7 @@ defineProps({
   },
   colClass: {
     type: String,
-    default: 'col-4'
+    default: 'col-6'
   }
 });
 </script>

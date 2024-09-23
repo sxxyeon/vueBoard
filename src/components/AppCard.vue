@@ -14,16 +14,16 @@
 
 <style scoped>
 .card {
-  height: 200px;
+  height: 260px;
   border: none;
   transition: transform 0.2s;
   cursor: pointer;
-  box-shadow: 0 1px 10px rgb(0, 0, 0, 20%);
+  box-shadow: 0 1px 10px 8px rgb(0, 0, 0, 10%);
 }
 .card:hover {
   transform: scale(1.02);
 }
 .card-footer {
-  border-top: 1px solid #eee;
+  border: none;
 }
 </style>

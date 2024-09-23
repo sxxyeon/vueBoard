@@ -1,7 +1,7 @@
 <template>
   <form>
-    <div class="mb-3">
-      <label for="title" class="form-label">제목</label>
+    <div class="my-5">
+      <label for="title" class="form-label text-muted fz-sm">제목</label>
       <input
         id="title"
         :value="title"
@@ -11,8 +11,8 @@
         @input="$emit('update:title', $event.target.value)"
       />
     </div>
-    <div class="mb-3">
-      <label for="content" class="form-label">내용</label>
+    <div class="my-5">
+      <label for="content" class="form-label text-muted fz-sm">내용</label>
       <textarea
         id="content"
         :value="content"
@@ -33,4 +33,8 @@ defineProps({
 defineEmits(['update:title', 'update:content']);
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+textarea {
+  min-height: 200px;
+}
+</style>

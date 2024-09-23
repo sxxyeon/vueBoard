@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <h2 class="tit">게시글 등록</h2>
-    <hr class="my-4" />
+  <div class="mt-5">
+    <h2 class="tit fs-3 fw-bold mb-5">게시글 등록</h2>
     <PostForm
       v-model:title="form.title"
       v-model:content="form.content"
@@ -9,13 +8,9 @@
     >
       <template #actions>
         <div class="w-full d-flex justify-content-center gap-2">
-          <button
-            type="button"
-            class="btn btn-outline-dark w-25"
-            @click="goListPage"
-          >
+          <button type="button" class="btn btn-sub w-25" @click="goListPage">
             목록</button
-          ><button class="btn btn-dark w-25">저장</button>
+          ><button class="btn btn-primary w-25">저장</button>
         </div>
       </template>
     </PostForm>

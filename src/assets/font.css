@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'LINESeedKR';
+  font-weight: light;
+  src: url('/font/LINESeedKR-Th.woff2');
+}
+@font-face {
+  font-family: 'LINESeedKR';
+  font-weight: normal;
+  src: url('/font/LINESeedKR-Rg.woff2');
+}
+@font-face {
+  font-family: 'LINESeedKR';
+  font-weight: bold;
+  src: url('/font/LINESeedKR-Bd.woff2');
+}
+
+html,
+body,
+#root {
+  font-family: 'LINESeedKR';
+  letter-spacing: 0.08em;
+  line-height: 1.25em;
+}

@@ -1,28 +1,21 @@
 <template>
   <div>
-    <div class="d-flex justify-content-between align-items-center">
-      <h2 class="tit">{{ post.title }}</h2>
+    <div class="d-flex justify-content-between align-items-center mt-5">
+      <h2 class="tit fs-3 fw-bold">{{ post.title }}</h2>
       <p class="text-muted fs-6 m-0">{{ post.createdAt }}</p>
     </div>
-    <p class="post_cont">{{ post.content }}</p>
+    <p class="post_cont mb-5 text-muted">{{ post.content }}</p>
 
-    <hr class="my-4" />
     <div class="row g-2">
       <div class="col-auto me-auto"></div>
       <div class="col-auto">
-        <button class="btn btn-outline-dark btn-sm" @click="goListPage">
-          목록
-        </button>
+        <button class="btn btn-primary btn-sm" @click="goListPage">목록</button>
       </div>
       <div class="col-auto">
-        <button class="btn btn-outline-primary btn-sm" @click="goEditPage">
-          수정
-        </button>
+        <button class="btn btn-sub btn-sm" @click="goEditPage">수정</button>
       </div>
       <div class="col-auto">
-        <button class="btn btn-outline-danger btn-sm" @click="remove">
-          삭제
-        </button>
+        <button class="btn btn-dark btn-sm" @click="remove">삭제</button>
       </div>
     </div>
   </div>
@@ -118,7 +111,8 @@ watch(
 }
 .post_cont {
   min-height: 200px;
-  border: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   padding: 10px;
   margin: 20px 0;
 }
