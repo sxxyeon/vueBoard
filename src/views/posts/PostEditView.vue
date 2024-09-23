@@ -60,7 +60,7 @@ fetchPost();
 const edit = async () => {
   await updatePost(id, { ...form.value });
   vAlert('수정이 완료됐습니다!', 'alert-success');
-  //router.push({ name: 'PostDetail', params: { id } }); // 근데 이거 params 추가 안 해줘도 잘 가네..
+  router.push({ name: 'PostDetail', params: { id } }); // 근데 이거 params 추가 안 해줘도 잘 가네..
 };
 
 const goDetailPage = () => {

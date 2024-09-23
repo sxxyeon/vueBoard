@@ -10,3 +10,4 @@ function create(baseURL, options) {
 }
 
 export const posts = create(`${import.meta.env.VITE_APP_API_URL}posts`);
+export const comments = create(`${import.meta.env.VITE_APP_API_URL}comments`);
