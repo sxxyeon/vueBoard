@@ -28,14 +28,14 @@
     <div
       class="add-comment mt-4 row mb-5 d-flex justify-content-between align-items-center"
     >
-      <div class="col-11">
+      <div class="col-12 col-lg-11">
         <textarea
           v-model="newComment.content"
           placeholder="댓글을 입력하세요"
           class="form-control"
         ></textarea>
       </div>
-      <div class="col-1 d-flex">
+      <div class="col-12 d-flex col-lg-1">
         <button class="btn btn-primary w-100" @click="submitComment">
           작성
         </button>
