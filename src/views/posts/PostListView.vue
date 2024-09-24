@@ -6,36 +6,45 @@
       v-model:title="params.title_like"
       v-model:limit="params._limit"
     />
+    <div v-if="loading">
+      <div class="text-center mt-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="sr-only"></span>
+        </div>
+      </div>
+    </div>
 
-    <AppGrid :items="posts">
-      <template #default="{ item }">
-        <PostItem
-          :title="item.title"
-          :content="item.content"
-          :created-at="item.createdAt"
-          @click="goPage(item.id)"
-          @modal="openModal(item)"
-        />
-      </template>
-    </AppGrid>
+    <div v-else>
+      <AppGrid :items="posts">
+        <template #default="{ item }">
+          <PostItem
+            :title="item.title"
+            :content="item.content"
+            :created-at="item.createdAt"
+            @click="goPage(item.id)"
+            @modal="openModal(item)"
+          />
+        </template>
+      </AppGrid>
 
-    <AppPagination
-      :current-page="params._page"
-      :page-count="pageCount"
-      @page="(page) => (params._page = page)"
-    />
-
-    <Teleport to="#modal">
-      <PostModal
-        v-model="show"
-        :title="modalTitle"
-        :content="modalContent"
-        :created-at="modalCreatedAt"
-        :post-id="modalPostId"
-        @detail="goPage"
+      <AppPagination
+        :current-page="params._page"
+        :page-count="pageCount"
+        @page="(page) => (params._page = page)"
       />
-    </Teleport>
-    <hr class="my-4" style="color: #888" />
+
+      <Teleport to="#modal">
+        <PostModal
+          v-model="show"
+          :title="modalTitle"
+          :content="modalContent"
+          :created-at="modalCreatedAt"
+          :post-id="modalPostId"
+          @detail="goPage"
+        />
+      </Teleport>
+      <hr class="my-4" style="color: #888" />
+    </div>
   </div>
 </template>
 
@@ -64,13 +73,18 @@ const pageCount = computed(() =>
   Math.ceil(totalCount.value / params.value._limit)
 );
 
+const loading = ref(true); // 로딩 상태 관리
+
 const fetchPosts = async () => {
   try {
+    loading.value = true; // 로딩 시작
     const { data, headers } = await getPosts(params.value);
     posts.value = data;
     totalCount.value = headers['x-total-count'];
   } catch (error) {
     console.error(error);
+  } finally {
+    loading.value = false; // 로딩 완료
   }
 };
 

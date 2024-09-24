@@ -24,4 +24,7 @@ import TheView from './layouts/TheView.vue';
   border: 1px solid #656565;
   color: #fff;
 }
+.text-primary {
+  color: #6edbb4 !important;
+}
 </style>
