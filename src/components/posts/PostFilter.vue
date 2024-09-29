@@ -1,47 +1,86 @@
 <template>
   <form @submit.prevent="">
-    <div class="row g-3 d-flex justify-content-between mb-5">
-      <div class="select-btn col-3 col-lg-2">
-        <select
-          :value="limit"
-          class="form-select"
-          @input="$emit('update:limit', $event.target.value)"
-        >
-          <option value="9">9개씩</option>
-          <option value="6">6개씩</option>
-          <option value="3">3개씩</option>
-        </select>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="12"
-          height="12"
-          fill="#50a486"
-          class="bi bi-caret-down-fill"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
-          />
-        </svg>
-      </div>
-      <div class="col-5 col-lg-3">
-        <div class="input-group input-btn">
+    <div
+      class="row g-3 d-flex justify-content-md-between mb-5 flex-column flex-sm-row"
+    >
+      <div class="col-12 col-md-6">
+        <div class="input-group input-search d-flex gap-2">
           <input
             :value="title"
             type="text"
-            class="form-control"
+            class="form-control text-sub"
+            placeholder="검색어를 입력해주세요"
             @input="$emit('update:title', $event.target.value)"
-          />
-          <svg
+          /><svg
             xmlns="http://www.w3.org/2000/svg"
             width="25"
             height="25"
-            fill="#50a486"
+            fill="#AAA7B4"
             class="bi bi-search"
             viewBox="0 0 16 16"
           >
             <path
               d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
+            />
+          </svg>
+          <button
+            class="btn btn-primary px-3"
+            style="background-color: #9fe0c9"
+          >
+            검색
+          </button>
+        </div>
+      </div>
+      <div class="col-5 col-md-3 d-flex flex-row gap-2">
+        <div class="func-wrap gap-2 justify-content-between">
+          <button class="btn btn-sub" @click="$emit('list', 'list')">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="#6edbb4"
+              class="bi bi-square-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2z"
+              />
+            </svg></button
+          ><button class="btn btn-sub" @click="$emit('list', 'grid')">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="#6edbb4"
+              class="bi bi-grid-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="position-relative">
+          <select
+            :value="limit"
+            class="form-select"
+            @input="$emit('update:limit', $event.target.value)"
+          >
+            <option value="9">9개씩</option>
+            <option value="6">6개씩</option>
+            <option value="3">3개씩</option>
+          </select>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="12"
+            fill="#50a486"
+            class="bi bi-caret-down-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
             />
           </svg>
         </div>
@@ -55,55 +94,46 @@ defineProps({
   title: String,
   limit: Number
 });
-defineEmits(['update:title', 'update:limit']);
+defineEmits(['update:title', 'update:limit', 'list', 'grid']);
 </script>
 
 <style scoped>
-input:focus {
-  outline: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  background: transparent;
-  box-sizing: border-box;
-}
-.input-btn {
-  position: relative;
-  border-radius: 30px !important;
-  overflow: hidden;
-  background-color: #e6e6e6;
-}
-.input-btn svg {
+/* search section */
+.input-search svg {
   position: absolute;
-  right: 10px;
+  left: 10px;
   top: 50%;
   transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 5;
 }
-.form-control {
-  min-height: 38px;
-  background-color: #e6e6e6;
-  font-size: 16px;
-  border: none;
-  border-radius: 10px;
-  outline: none;
-  padding-right: 40px;
-  color: #50a486;
+.input-search .form-control {
+  padding-left: 40px;
 }
 
-.select-btn {
+/* button, select section */
+.func-wrap {
+  display: flex;
   position: relative;
+  vertical-align: middle;
 }
-.select-btn svg {
+.func-wrap .btn {
+  padding: 0 10px;
+  /* max-height: 38px; */
+}
+
+.form-select {
+  min-width: 83px;
+}
+.form-select + svg {
   position: absolute;
   right: 12px;
   top: 50%;
   transform: translateY(-50%);
 }
-
-.form-select {
-  background: #e6e6e6;
-  font-size: 14px;
-  color: #50a486;
-  cursor: pointer;
-  min-height: 38px;
+@media (max-width: 590px) {
+  .func-wrap {
+    display: none;
+  }
 }
 </style>

@@ -1,14 +1,14 @@
 <template>
-  <div>
-    <div class="d-flex justify-content-between align-items-center mt-5">
-      <h2 class="tit fs-3 fw-bold">{{ post.title }}</h2>
-      <p class="text-muted fs-6 m-0">{{ post.createdAt }}</p>
+  <div class="my-4 my-lg-5">
+    <div class="d-flex justify-content-between align-items-center py-3">
+      <h2 class="tit fs-5 fw-bold mb-0">{{ post.title }}</h2>
+      <p class="text-muted fz-sm m-0">{{ post.createdAt }}</p>
     </div>
-    <p class="post_cont text-muted">{{ post.content }}</p>
+    <p class="post_cont text-muted py-3">{{ post.content }}</p>
 
     <!-- 댓글 리스트 -->
-    <div class="comments mt-4">
-      <h3 class="fs-6 fw-bold mb-3">댓글</h3>
+    <div class="comments">
+      <h5 class="fs-6 fw-bold mb-0 pb-1 pb-lg-3">댓글</h5>
       <template v-if="filteredComments.length === 0">
         <p class="text-muted fz-sm my-5">댓글이 없습니다.</p>
       </template>
@@ -16,42 +16,60 @@
         <div
           v-for="comment in filteredComments"
           :key="comment.id"
-          class="comment-item"
+          class="comment-item py-2 d-flex flex-row justify-content-between align-items-center"
         >
-          <p class="mb-1 fz-sm text-muted">{{ comment.date }}</p>
-          <p class="">{{ comment.content }}</p>
+          <div>
+            <p class="mb-1 fz-sm text-muted fw-bold">
+              익명의 작성자{{ comment.id }}
+            </p>
+            <p class="fz-sm text-muted">{{ comment.content }}</p>
+          </div>
+          <p class="fz-sm text-muted">{{ comment.date }}</p>
         </div>
       </template>
     </div>
 
     <!-- 댓글 작성 -->
     <div
-      class="add-comment mt-4 row mb-5 d-flex justify-content-between align-items-center"
+      class="add-comment mt-4 mb-5 d-flex flex-column flex-lg-row justify-content-between align-items-center gap-2"
     >
-      <div class="col-12 col-lg-11">
+      <div class="flex-grow-1">
         <textarea
           v-model="newComment.content"
           placeholder="댓글을 입력하세요"
           class="form-control"
         ></textarea>
       </div>
-      <div class="col-12 d-flex col-lg-1">
-        <button class="btn btn-primary w-100" @click="submitComment">
-          작성
-        </button>
-      </div>
+      <button class="btn btn-primary px-1 px-lg-5" @click="submitComment">
+        작성
+      </button>
     </div>
 
     <div class="row g-2">
       <div class="col-auto me-auto"></div>
       <div class="col-auto">
-        <button class="btn btn-primary btn-sm" @click="goListPage">목록</button>
+        <button
+          class="btn btn-primary-outline btn-sm fz-sm pt-2 px-3"
+          @click="goListPage"
+        >
+          목록
+        </button>
       </div>
       <div class="col-auto">
-        <button class="btn btn-sub btn-sm" @click="goEditPage">수정</button>
+        <button
+          class="btn btn-primary-outline btn-sm fz-sm pt-2 px-3"
+          @click="goEditPage"
+        >
+          수정
+        </button>
       </div>
       <div class="col-auto">
-        <button class="btn btn-dark btn-sm" @click="remove">삭제</button>
+        <button
+          class="btn btn-primary-outline btn-sm fz-sm pt-2 px-3"
+          @click="remove"
+        >
+          삭제
+        </button>
       </div>
     </div>
   </div>
@@ -180,20 +198,27 @@ watch(
   min-height: 200px;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
-  padding: 10px;
-  margin: 20px 0;
-}
-.comments {
-  padding-top: 10px;
 }
 .comment-item {
   border-top: 1px solid #eee;
-  padding: 10px 0;
 }
 .comment-item:first-of-type {
   border-top: none;
 }
-textarea {
-  height: 130px;
+
+.add-comment textarea {
+  height: 70px;
+}
+.add-comment button {
+  height: 70px;
+}
+@media (max-width: 992px) {
+  .add-comment .flex-grow-1 {
+    width: 100%;
+  }
+  .add-comment button {
+    width: 100%;
+    height: 40px;
+  }
 }
 </style>

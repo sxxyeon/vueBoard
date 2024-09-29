@@ -1,5 +1,8 @@
 <template>
-  <div class="card bg-white rounded hover-zoom">
+  <div
+    class="card rounded hover-zoom px-3 py-2 px-md-4 py-md-3"
+    :class="isList ? 'card-list' : 'card-grid'"
+  >
     <div v-if="$slots.header" class="card-header">
       <slot name="header"></slot>
     </div>
@@ -11,19 +14,48 @@
     </div>
   </div>
 </template>
-
+<script setup>
+defineProps({
+  isList: {
+    type: Boolean
+  }
+});
+</script>
 <style scoped>
 .card {
-  height: 260px;
   border: none;
   transition: transform 0.2s;
   cursor: pointer;
   box-shadow: 0 1px 10px 8px rgb(0, 0, 0, 10%);
+  background: rgb(255, 255, 255, 1);
+}
+.card-list {
+  height: auto;
+}
+.card-grid {
+  height: auto;
 }
 .card:hover {
   transform: scale(1.02);
 }
+.card-header {
+  border: none;
+  background: none;
+  text-align: right;
+  padding: 0;
+}
+.card-body {
+  padding: 0;
+}
 .card-footer {
   border: none;
+  background: none;
+  padding: 0;
+}
+
+@media (min-width: 576px) {
+  .card-grid {
+    height: 240px;
+  }
 }
 </style>

@@ -49,7 +49,7 @@ defineEmits(['close', 'update:modelValue']);
   height: 100vh;
 }
 .modal-dialog {
-  border-radius: 30px;
+  border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 1px 10px 10px rgb(0, 0, 0, 15%);
 }

@@ -3,8 +3,7 @@
     <div
       v-for="(item, index) in items"
       :key="index"
-      :class="colClass"
-      class="col-lg-4"
+      :class="isList ? 'col-lg-12' : 'col-sm-6 col-md-4'"
     >
       <slot :item="item" :index="index"></slot>
     </div>
@@ -17,11 +16,10 @@ defineProps({
     type: Array,
     Required: true
   },
-  colClass: {
-    type: String,
-    default: 'col-6'
+  isList: {
+    type: Boolean
   }
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

@@ -1,6 +1,6 @@
 <template>
-  <div class="mt-5">
-    <h2 class="tit fs-3 fw-bold mb-5">게시글 수정</h2>
+  <div class="mt-4 mb-5">
+    <h2 class="tit fs-5 text-center text-muted my-0">게시글 수정</h2>
     <PostForm
       v-model:title="form.title"
       v-model:content="form.content"
@@ -8,9 +8,13 @@
     >
       <template #actions>
         <div class="w-full d-flex justify-content-center gap-2">
-          <button type="button" class="btn btn-sub w-25" @click="goDetailPage">
+          <button
+            type="button"
+            class="w-100 btn btn-sub p-3"
+            @click="goDetailPage"
+          >
             취소</button
-          ><button class="btn btn-primary w-25">수정</button>
+          ><button class="w-100 btn btn-primary p-3">수정</button>
         </div>
       </template>
     </PostForm>

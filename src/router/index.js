@@ -14,6 +14,7 @@ import NestedView from '@/views/nested/NestedView.vue';
 import NestedOneView from '@/views/nested/NestedOneView.vue';
 import NestedTwoView from '@/views/nested/NestedTwoView.vue';
 import NestedHomeView from '@/views/nested/NestedHomeView.vue';
+import LikedPostView from '@/views/posts/LikedPostView.vue';
 
 const routes = [
   // {
@@ -46,6 +47,12 @@ const routes = [
     path: '/:id/edit',
     name: 'PostEdit',
     component: PostEditView,
+    props: true
+  },
+  {
+    path: '/my',
+    name: 'LikedPost',
+    component: LikedPostView,
     props: true
   },
   // {

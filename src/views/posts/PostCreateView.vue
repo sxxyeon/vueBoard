@@ -1,16 +1,21 @@
 <template>
-  <div class="mt-5">
-    <h2 class="tit fs-3 fw-bold mb-5">게시글 등록</h2>
+  <div class="mt-4 mb-5">
+    <h2 class="tit fs-5 text-center text-muted my-0">게시글 등록</h2>
     <PostForm
+      v-model:name="form.name"
       v-model:title="form.title"
       v-model:content="form.content"
       @submit.prevent="save"
     >
       <template #actions>
         <div class="w-full d-flex justify-content-center gap-2">
-          <button type="button" class="btn btn-sub w-25" @click="goListPage">
+          <button
+            type="button"
+            class="w-100 btn btn-sub p-3"
+            @click="goListPage"
+          >
             목록</button
-          ><button class="btn btn-primary w-25">저장</button>
+          ><button class="w-100 btn btn-primary p-3">저장</button>
         </div>
       </template>
     </PostForm>
@@ -25,8 +30,10 @@ import PostForm from '@/components/posts/PostForm.vue';
 
 const router = useRouter();
 const form = ref({
+  name: null,
   title: null,
-  content: null
+  content: null,
+  isLiked: false
 });
 
 const todayDate = (date) => {
@@ -59,4 +66,4 @@ const goListPage = () => {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style></style>
