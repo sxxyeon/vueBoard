@@ -2,7 +2,7 @@
   <div class="pt-3 py-5">
     <div v-if="loading">
       <div class="text-center mt-5">
-        <div class="spinner-border text-primary" role="status">
+        <div class="spinner-border text-muted" role="status">
           <span class="sr-only"></span>
         </div>
       </div>
