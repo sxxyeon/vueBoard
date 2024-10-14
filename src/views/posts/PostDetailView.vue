@@ -49,7 +49,7 @@
       <div class="col-auto me-auto"></div>
       <div class="col-auto">
         <button
-          class="btn btn-primary-outline btn-sm fz-sm pt-2 px-3"
+          class="btn btn-primary-outline btn-sm fz-sm px-3 lh-base"
           @click="goListPage"
         >
           목록
@@ -57,7 +57,7 @@
       </div>
       <div class="col-auto">
         <button
-          class="btn btn-primary-outline btn-sm fz-sm pt-2 px-3"
+          class="btn btn-primary-outline btn-sm fz-sm px-3 lh-base"
           @click="goEditPage"
         >
           수정
@@ -65,7 +65,7 @@
       </div>
       <div class="col-auto">
         <button
-          class="btn btn-primary-outline btn-sm fz-sm pt-2 px-3"
+          class="btn btn-primary-outline btn-sm fz-sm px-3 lh-base"
           @click="remove"
         >
           삭제

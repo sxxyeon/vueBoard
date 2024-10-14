@@ -82,12 +82,4 @@ const goPage = () => {
 };
 </script>
 
-<style scoped>
-.header-sub {
-  /* border-bottom: 1px solid #6edbb4; */
-}
-.btn {
-  height: 38px;
-  padding-top: 7px;
-}
-</style>
+<style scoped></style>

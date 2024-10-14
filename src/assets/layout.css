@@ -1,5 +1,7 @@
 /* layout */
-
+* {
+  -webkit-text-size-adjust: none;
+}
 html,
 body,
 #app {
@@ -43,8 +45,8 @@ select {
   padding: 6px 7px;
   height: 38px;
   border-radius: 3px !important;
-  line-height: 1 !important;
   box-sizing: border-box;
+  line-height: normal;
 }
 textarea {
   padding: 10px 10px !important;
@@ -54,8 +56,8 @@ button {
   outline: none;
   padding: 6px 7px;
   border-radius: 3px !important;
-  line-height: 1 !important;
   font-size: 0.95rem !important;
+  line-height: normal !important;
 }
 
 /* input style */
@@ -64,7 +66,7 @@ button {
   color: #aaa7b4;
   background: #f4f3f8;
   padding-top: 7px;
-  line-height: 1.5rem !important;
+  line-height: normal !important;
 }
 .form-control:focus {
   outline: none !important;
@@ -81,7 +83,7 @@ button {
 
 @media (max-width: 800px) {
   .form-control::placeholder {
-    font-size: 0.85rem !important;
+    font-size: 1rem !important;
   }
   button {
     font-size: 0.85rem !important;

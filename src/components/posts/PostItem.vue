@@ -1,7 +1,7 @@
 <template>
   <AppCard :is-list="isList">
     <template #header
-      ><p class="text-muted m-0 fz-sm">{{ createdAt }}</p></template
+      ><p class="text-muted m-0 fz-sm pb-2">{{ createdAt }}</p></template
     >
     <template #default>
       <div class="clearfix">
@@ -22,7 +22,7 @@
           </svg>
         </div>
         <div>
-          <h6 class="fz-sm fw-bold pt-2">{{ name }}</h6>
+          <h6 v-if="name" class="fz-sm fw-bold mb-1">{{ name }}</h6>
           <h6 class="card-title fw-bold">{{ title }}</h6>
           <p class="card-content text-muted mb-1 mb-sm-3">{{ content }}</p>
         </div>
@@ -159,7 +159,6 @@ watchEffect(fetchComments);
   border-radius: 100%;
   float: left;
   margin-right: 10px;
-  margin-top: 3px;
 }
 .card-title {
   overflow: hidden;
