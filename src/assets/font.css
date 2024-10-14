@@ -18,6 +18,6 @@ html,
 body,
 #root {
   font-family: 'LINESeedKR';
-  letter-spacing: 0.08em;
+  letter-spacing: -0.01em;
   line-height: normal;
 }
