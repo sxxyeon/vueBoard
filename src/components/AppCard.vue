@@ -3,10 +3,10 @@
     class="card rounded hover-zoom px-3 py-3 px-md-4 py-md-4"
     :class="isList ? 'card-list' : 'card-grid'"
   >
-    <div v-if="$slots.header" class="card-header">
+    <div v-if="$slots.header" class="card-header position-relative">
       <slot name="header"></slot>
     </div>
-    <div v-if="$slots.default" class="card-body">
+    <div v-if="$slots.default" class="card-body pt-2">
       <slot></slot>
     </div>
     <div v-if="$slots.footer" class="card-footer">
@@ -26,7 +26,7 @@ defineProps({
   border: none;
   transition: transform 0.2s;
   cursor: pointer;
-  box-shadow: 0 1px 10px 8px rgb(0, 0, 0, 10%);
+  box-shadow: 0 1px 10px 2px rgb(0, 0, 0, 7%);
   background: rgb(255, 255, 255, 1);
 }
 .card-list {

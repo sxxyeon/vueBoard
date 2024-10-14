@@ -1,7 +1,9 @@
 <template>
   <AppCard :is-list="isList">
     <template #header
-      ><p class="text-muted m-0 fz-sm pb-2">{{ createdAt }}</p></template
+      ><p class="text-muted m-0 fz-sm position-absolute" style="right: 0px">
+        {{ createdAt }}
+      </p></template
     >
     <template #default>
       <div class="clearfix">
