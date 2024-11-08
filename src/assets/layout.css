@@ -13,31 +13,10 @@ body,
   height: auto;
   min-height: 100%;
 }
-.wrap-bg {
-  height: 310px;
-  border-radius: 0 0 0 200px;
-  background: rgb(110, 219, 180);
-  background: linear-gradient(
-    27deg,
-    rgba(110, 219, 180, 1) 0%,
-    rgba(110, 210, 199, 1) 51%,
-    rgba(121, 177, 222, 1) 79%,
-    rgba(136, 133, 255, 1) 100%
-  );
-}
-.bg-grey {
-  background: #f4f4f4;
-}
-.view-cont {
-  max-width: 800px;
-  margin: 0 auto;
-}
 .container {
   max-width: 1200px;
 }
 
-input,
-textarea,
 select {
   border: none !important;
   outline: none !important;
@@ -58,22 +37,30 @@ button {
   border-radius: 3px !important;
   font-size: 0.95rem !important;
   line-height: normal !important;
+  box-sizing: border-box;
+}
+ul,
+ol,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 /* input style */
 
 .form-control {
   color: #aaa7b4;
-  background: #f4f3f8;
+  background: #fff;
+  border: 1px solid #eee !important;
   padding-top: 7px;
   line-height: normal !important;
+  box-sizing: border-box;
 }
 .form-control:focus {
   outline: none !important;
-  border: none !important;
   box-shadow: none !important;
   box-sizing: border-box;
-  background: #f4f3f8;
   color: #aaa7b4;
 }
 
@@ -165,4 +152,16 @@ button {
 }
 .clearfix:after {
   clear: both;
+}
+
+/* pagination */
+.popular_swiper .swiper-pagination {
+  bottom: 15px !important;
+}
+.popular_swiper .swiper-pagination-bullet {
+  width: 10px;
+  height: 2px;
+}
+.popular_swiper .swiper-pagination-bullet-active {
+  background: #fff;
 }

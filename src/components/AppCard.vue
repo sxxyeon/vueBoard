@@ -1,6 +1,6 @@
 <template>
   <div
-    class="card rounded hover-zoom px-3 py-3 px-md-4 py-md-4"
+    class="card rounded hover-zoom px-3 py-2 px-md-4 py-md-3"
     :class="isList ? 'card-list' : 'card-grid'"
   >
     <div v-if="$slots.header" class="card-header position-relative">

@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-4 mb-5">
+  <div class="container my-5">
     <h2 class="tit fs-5 text-center text-muted my-0">게시글 수정</h2>
     <PostForm
       v-model:title="form.title"

@@ -1,56 +1,69 @@
 <template>
-  <header :class="!isMain && 'header-sub'">
-    <nav class="navbar navbar-expand-sm navbar-dark">
-      <div class="container">
-        <RouterLink to="/"
-          ><img v-if="isMain" src="/img/logo.png" height="35px" />
-          <img v-else src="/img/logo_g.png" height="35px"
-        /></RouterLink>
-
-        <button
-          class="btn"
-          :class="isMain ? 'btn-outline' : 'btn-outline btn-primary-outline'"
-          @click="router.push(`/create`)"
+  <header :class="!isMain && 'header-sub'" class="bg-white">
+    <nav class="navbar navbar-expand-sm navbar-light border-1 border-bottom">
+      <div class="container flex-column gap-5">
+        <div
+          class="upper w-100 d-flex flex-row justify-content-between align-items-center"
         >
-          글 쓰기
-        </button>
-        <!--Vue.js의 :class 바인딩을 사용해야 조건에 따라 동적으로 클래스를 변경할 수 있다.-->
-        <!-- 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon" />
-        </button> -->
-        <!-- <div id="navbarSupportedContent" class="collapse navbar-collapse">
-          <ul class="navbar-nav me-auto">
+          <RouterLink to="/"
+            ><img v-if="isMain" src="/img/logo_g.png" height="35px" />
+            <img v-else src="/img/logo_g.png" height="35px"
+          /></RouterLink>
+          <div>
+            <button
+              class="btn me-2 btn-outline btn-primary-outline"
+              @click="router.push(`/my`)"
+            >
+              좋아요한 글
+            </button>
+            <button
+              class="btn btn-outline btn-primary-outline"
+              @click="router.push(`/create`)"
+            >
+              글 쓰기
+            </button>
+          </div>
+        </div>
+        <div class="gnb w-100">
+          <ul class="w-100 d-flex flex-row gap-4 gap-md-5 text-sub fw-bold">
             <li class="nav-item">
-              <RouterLink to="/" class="nav-link" active-class="active">
-                Home
+              <RouterLink
+                :to="{ name: 'PostList' }"
+                class="nav-link"
+                exact-active-class="active"
+              >
+                홈
               </RouterLink>
             </li>
             <li class="nav-item">
-              <RouterLink to="/about" class="nav-link" active-class="active">
-                About
+              <RouterLink
+                :to="{ name: 'P1', replace: true }"
+                class="nav-link"
+                exact-active-class="active"
+              >
+                경제/사회
               </RouterLink>
             </li>
             <li class="nav-item">
-              <RouterLink to="/posts" class="nav-link" active-class="active">
-                게시글
+              <RouterLink
+                :to="{ name: 'P2', replace: true }"
+                class="nav-link"
+                exact-active-class="active"
+              >
+                연예/이슈
               </RouterLink>
             </li>
             <li class="nav-item">
-              <RouterLink to="/nested" class="nav-link" active-class="active">
-                Nested
+              <RouterLink
+                :to="{ name: 'P3', replace: true }"
+                class="nav-link"
+                exact-active-class="active"
+              >
+                고민상담
               </RouterLink>
             </li>
           </ul>
-        </div> -->
+        </div>
       </div>
     </nav>
   </header>
@@ -69,17 +82,10 @@ const props = defineProps({
     type: Boolean
   }
 });
-
-watch(
-  () => props.isMain,
-  (newIsMain) => {}
-);
-
-const goPage = () => {
-  router.push({
-    name: 'PostCreate'
-  });
-};
 </script>
 
-<style scoped></style>
+<style scoped>
+.active {
+  color: #000;
+}
+</style>

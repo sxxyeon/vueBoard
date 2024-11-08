@@ -1,21 +1,19 @@
 <template>
   <form @submit.prevent="">
-    <div
-      class="row g-3 d-flex justify-content-md-between mb-5 flex-column flex-sm-row"
-    >
-      <div class="col-12 col-md-6">
+    <div class="d-flex justify-content-between mb-4 flex-row gap-2">
+      <div>
         <div class="input-group input-search d-flex gap-2">
           <input
             :value="title"
             type="text"
-            class="form-control text-sub"
+            class="form-control text-sub bg-white rounded-5"
             placeholder="검색어를 입력해주세요"
             @input="$emit('update:title', $event.target.value)"
           /><svg
             xmlns="http://www.w3.org/2000/svg"
             width="25"
             height="25"
-            fill="#AAA7B4"
+            fill="#9fe0c9"
             class="bi bi-search"
             viewBox="0 0 16 16"
           >
@@ -23,15 +21,9 @@
               d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
             />
           </svg>
-          <button
-            class="btn btn-primary px-3"
-            style="background-color: #9fe0c9"
-          >
-            검색
-          </button>
         </div>
       </div>
-      <div class="col-5 col-md-3 d-flex flex-row gap-2">
+      <div class="d-flex flex-row gap-2 align-self-end">
         <div class="func-wrap gap-2 justify-content-between">
           <button class="btn btn-sub" @click="$emit('list', 'list')">
             <svg
@@ -63,7 +55,7 @@
         </div>
         <div class="position-relative">
           <select
-            :value="limit"
+            :value="Number(limit)"
             class="form-select"
             @input="$emit('update:limit', $event.target.value)"
           >
@@ -109,6 +101,7 @@ defineEmits(['update:title', 'update:limit', 'list', 'grid']);
 }
 .input-search .form-control {
   padding-left: 40px;
+  border: 1px solid #9fe0c9 !important;
 }
 
 /* button, select section */

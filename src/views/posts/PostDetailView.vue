@@ -1,8 +1,12 @@
 <template>
-  <div class="my-4 my-lg-5">
+  <div class="container my-5">
     <div class="d-flex justify-content-between align-items-center py-3">
       <h2 class="tit fs-5 fw-bold mb-0">{{ post.title }}</h2>
-      <p class="text-muted fz-sm m-0">{{ post.createdAt }}</p>
+      <div class="d-flex flex-column gap-1 flex-md-row gap-md-3">
+        <p class="text-muted fz-sm m-0">{{ typeText(Number(post.type)) }}</p>
+        <span class="d-none d-md-block">•</span>
+        <p class="text-muted fz-sm m-0">{{ post.createdAt }}</p>
+      </div>
     </div>
     <p class="post_cont text-muted py-3">{{ post.content }}</p>
 
@@ -115,7 +119,6 @@ const fetchComments = async () => {
     const { data } = await getComments();
     // 데이터가 객체일 경우 배열로 감싸기
     comments.value = Array.isArray(data) ? data : [data];
-    console.log(comments.value);
     filteredComments.value = comments.value.filter(
       (comment) => Number(comment.postId) === Number(id.value)
     );
@@ -146,6 +149,20 @@ const submitComment = async () => {
     await fetchComments(); // 댓글 목록 새로 불러오기
   } catch (error) {
     console.error(error);
+  }
+};
+
+// 타입 지정
+const typeText = (type) => {
+  switch (type) {
+    case 1:
+      return '경제/사회';
+    case 2:
+      return '연예/이슈';
+    case 3:
+      return '고민상담';
+    default:
+      return '기타';
   }
 };
 

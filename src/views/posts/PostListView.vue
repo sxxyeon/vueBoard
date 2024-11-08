@@ -1,8 +1,9 @@
 <template>
-  <div>
+  <PopularPosts />
+  <div class="container py-5">
     <PostFilter
       v-model:title="params.title_like"
-      v-model:limit="params._limit"
+      v-model:limit="limit"
       @list="handleList"
     />
     <div v-if="loading">
@@ -14,7 +15,7 @@
     </div>
 
     <div v-else>
-      <AppGrid :items="posts" :is-list="isList">
+      <AppGrid :items="slicedPosts" :is-list="isList">
         <template #default="{ item }">
           <PostItem
             :id="item.id"
@@ -24,6 +25,7 @@
             :title="item.title"
             :content="item.content"
             :created-at="item.createdAt"
+            :type="item.type"
             @click="goPage(item.id)"
             @modal="openModal(item)"
             @update-liked="(liked) => updateLiked(item.id, liked)"
@@ -32,9 +34,9 @@
       </AppGrid>
 
       <AppPagination
-        :current-page="params._page"
+        :current-page="curpage"
         :page-count="pageCount"
-        @page="(page) => (params._page = page)"
+        @page="(page) => (curpage = page)"
       />
 
       <Teleport to="#modal">
@@ -58,31 +60,71 @@ import AppPagination from '@/components/AppPagination.vue';
 import PostFilter from '@/components/posts/PostFilter.vue';
 import PostModal from '@/components/posts/PostModal.vue';
 import { getPosts, updatePost } from '@/api/posts';
-import { computed, ref, watchEffect } from 'vue';
-import { useRouter } from 'vue-router';
+import { computed, ref, watch, watchEffect } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+import PopularPosts from '@/components/posts/PopularPosts.vue';
 
-const posts = ref([]);
-const router = useRouter();
 const params = ref({
   _sort: 'createdAt',
-  _order: 'desc',
-  _page: 1,
-  _limit: 9,
+  //_order: 'desc',
   title_like: ''
 });
-const totalCount = ref(0);
-const pageCount = computed(() =>
-  Math.ceil(totalCount.value / params.value._limit)
+const path = ref(0);
+const limit = ref(9);
+const curpage = ref(1);
+const posts = ref([]); // 전체 게시글 목록
+const loading = ref(true); // 로딩 상태 관리
+
+const router = useRouter();
+const route = useRoute();
+
+watch(
+  [() => limit.value, () => curpage.value, () => params.value.title_like],
+  () => {
+    fetchPosts();
+  }
 );
 
-const loading = ref(true); // 로딩 상태 관리
+watch(
+  () => route.path,
+  (newPath) => {
+    path.value = newPath.slice(-1);
+    // 변경된 path에 따라 _page 값을 리셋하지 않도록 설정
+    curpage.value = 1;
+    fetchPosts();
+  }
+);
+const pageCount = computed(() =>
+  Math.floor(
+    filteredPosts.value.length / limit.value < 1
+      ? 1
+      : Math.ceil(filteredPosts.value.length / limit.value)
+  )
+);
+
+const filteredPosts = computed(() => {
+  return posts.value.filter((item) => {
+    if (Number(path.value) === 1) {
+      return Number(item.type) === 1;
+    } else if (Number(path.value) === 2) {
+      return Number(item.type) === 2;
+    } else if (Number(path.value) === 3) {
+      return Number(item.type) === 3;
+    }
+    return true;
+  });
+});
+const slicedPosts = computed(() => {
+  const start = (curpage.value - 1) * limit.value;
+  const end = Number(start) + Number(limit.value);
+  return filteredPosts.value.slice(start, end);
+});
 
 const fetchPosts = async () => {
   try {
     loading.value = true; // 로딩 시작
-    const { data, headers } = await getPosts(params.value);
+    const { data } = await getPosts(params.value);
     posts.value = data;
-    totalCount.value = headers['x-total-count'];
   } catch (error) {
     console.error(error);
   } finally {
@@ -91,7 +133,6 @@ const fetchPosts = async () => {
 };
 
 fetchPosts();
-watchEffect(fetchPosts);
 
 const updateLiked = async (id, liked) => {
   const post = posts.value.find((item) => Number(item.id) === Number(id));
@@ -121,8 +162,8 @@ const openModal = ({ title, content, createdAt, id }) => {
   modalCreatedAt.value = createdAt;
   modalPostId.value = id; // postId 설정
 };
+
 const handleList = (value) => {
-  console.log('List type selected:', value); // 콘솔에 로그 찍기
   if (value === 'list') {
     isList.value = true;
   } else if (value === 'grid') {

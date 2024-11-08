@@ -24,9 +24,11 @@
           </svg>
         </div>
         <div>
-          <h6 v-if="name" class="fz-sm fw-bold mb-1">{{ name }}</h6>
+          <h6 v-if="name" class="fz-sm mb-2 text-muted">
+            <span>{{ typeText(type) }}</span> • by{{ name }}
+          </h6>
           <h6 class="card-title fw-bold">{{ title }}</h6>
-          <p class="card-content text-muted mb-1 mb-sm-3">{{ content }}</p>
+          <p class="card-content text-muted">{{ content }}</p>
         </div>
       </div></template
     >
@@ -79,27 +81,13 @@
             commentCount
           }}</span>
         </button>
-        <!-- <button class="btn p-0" @click.stop="$emit('modal')">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="#6EDBB4"
-            class="bi bi-exclude"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2zm12 2H5a1 1 0 0 0-1 1v7h7a1 1 0 0 0 1-1z"
-            />
-          </svg>
-        </button> -->
       </div>
     </template>
   </AppCard>
 </template>
 
 <script setup>
-import { ref, toRefs, watchEffect } from 'vue';
+import { computed, ref, toRefs, watchEffect } from 'vue';
 import AppCard from '../AppCard.vue';
 import { getComments } from '@/api/posts';
 
@@ -126,10 +114,26 @@ const props = defineProps({
   liked: {
     // 추가된 부분: 부모 컴포넌트에서 전달받은 liked 상태
     type: Boolean
+  },
+  type: {
+    type: Number
   }
 });
 
 const emit = defineEmits(['modal', 'toggle-liked', 'updateLiked']);
+
+const typeText = (type) => {
+  switch (type) {
+    case 1:
+      return '경제/사회';
+    case 2:
+      return '연예/이슈';
+    case 3:
+      return '고민상담';
+    default:
+      return '기타';
+  }
+};
 
 const toggleLike = () => {
   const updatedLiked = !props.liked;
@@ -147,7 +151,6 @@ const fetchComments = async () => {
     commentCount.value = comments.value.filter(
       (comment) => String(comment.postId) === String(props.id)
     ).length;
-    console.log(commentCount.value);
   } catch (error) {
     console.error(error);
   }
@@ -178,7 +181,7 @@ watchEffect(fetchComments);
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
 }
 .count-bedge {

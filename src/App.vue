@@ -23,15 +23,7 @@ watch(
 </script>
 
 <template>
-  <div
-    :class="
-      isMain ? 'wrap d-flex flex-column bg-grey' : 'wrap d-flex flex-column'
-    "
-  >
-    <div
-      v-if="isMain"
-      className="wrap-bg w-100 position-absolute top-0 z-0"
-    ></div>
+  <div :class="isMain ? 'wrap d-flex flex-column' : 'wrap d-flex flex-column'">
     <TheHeader :is-main="isMain" />
     <div class="content flex-grow-1 h-100">
       <TheView class="view-cont" />
@@ -40,4 +32,9 @@ watch(
   </div>
 </template>
 
-<style></style>
+<style scoped>
+.active {
+  background: #9fe0c9;
+  color: #000;
+}
+</style>

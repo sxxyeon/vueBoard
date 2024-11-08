@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-3 py-5">
+  <div class="container my-5">
     <div v-if="loading">
       <div class="text-center mt-5">
         <div class="spinner-border text-muted" role="status">
@@ -32,8 +32,6 @@
 <script setup>
 import PostItem from '@/components/posts/PostItem.vue';
 import AppGrid from '@/components/AppGrid.vue';
-import AppPagination from '@/components/AppPagination.vue';
-import PostFilter from '@/components/posts/PostFilter.vue';
 import { getPosts, updatePost } from '@/api/posts';
 import { computed, ref, watchEffect } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
@@ -82,15 +80,6 @@ const goPage = (id) => {
 };
 
 const isList = ref(true);
-
-const handleList = (value) => {
-  console.log('List type selected:', value); // 콘솔에 로그 찍기
-  if (value === 'list') {
-    isList.value = true;
-  } else if (value === 'grid') {
-    isList.value = false;
-  }
-};
 </script>
 
 <style scoped></style>
