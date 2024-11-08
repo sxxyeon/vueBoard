@@ -1,5 +1,5 @@
 <template>
-  <form class="p-3 bg-white">
+  <form>
     <div class="mt-2 mb-3 mt-lg-3">
       <label for="name" class="form-label text-muted fz-sm mb-0">닉네임</label>
       <input

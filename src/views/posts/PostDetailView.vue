@@ -1,5 +1,5 @@
 <template>
-  <div class="container my-5">
+  <div class="container my-100">
     <div class="d-flex justify-content-between align-items-center py-3">
       <h2 class="tit fs-5 fw-bold mb-0">{{ post.title }}</h2>
       <div class="d-flex flex-column gap-1 flex-md-row gap-md-3">

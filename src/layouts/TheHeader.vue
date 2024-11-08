@@ -1,13 +1,12 @@
 <template>
-  <header :class="!isMain && 'header-sub'" class="bg-white">
-    <nav class="navbar navbar-expand-sm navbar-light border-1 border-bottom">
+  <header v-if="isMain" class="bg-white">
+    <nav class="navbar navbar-expand-sm navbar-light">
       <div class="container flex-column gap-5">
         <div
           class="upper w-100 d-flex flex-row justify-content-between align-items-center"
         >
-          <RouterLink to="/"
-            ><img v-if="isMain" src="/img/logo_g.png" height="35px" />
-            <img v-else src="/img/logo_g.png" height="35px"
+          <RouterLink to="/">
+            <img src="/img/logo_g.png" height="35px"
           /></RouterLink>
           <div>
             <button
@@ -63,6 +62,33 @@
               </RouterLink>
             </li>
           </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <header v-else>
+    <nav class="navbar navbar-expand-sm navbar-light">
+      <div class="container flex-column gap-5">
+        <div
+          class="upper w-100 d-flex flex-row justify-content-between align-items-center"
+        >
+          <RouterLink to="/">
+            <img src="/img/logo_g.png" height="35px"
+          /></RouterLink>
+          <div>
+            <button
+              class="btn me-2 btn-outline btn-primary-outline"
+              @click="router.push(`/my`)"
+            >
+              좋아요한 글
+            </button>
+            <button
+              class="btn btn-outline btn-primary-outline"
+              @click="router.push(`/create`)"
+            >
+              글 쓰기
+            </button>
+          </div>
         </div>
       </div>
     </nav>

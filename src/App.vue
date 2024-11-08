@@ -13,11 +13,17 @@ provide('isMain', isMain);
 watch(
   () => route.path,
   (newPath) => {
-    if (newPath !== '/') {
-      isMain.value = false;
-    } else {
+    if (
+      newPath === '/' ||
+      newPath === '/p1' ||
+      newPath === '/p2' ||
+      newPath === '/p3'
+    ) {
       isMain.value = true;
+    } else {
+      isMain.value = false;
     }
+    console.log(route.path);
   }
 );
 </script>

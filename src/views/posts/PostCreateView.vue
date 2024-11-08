@@ -1,6 +1,6 @@
 <template>
-  <div class="container my-5">
-    <h2 class="tit fs-5 text-center text-muted my-0">게시글 등록</h2>
+  <div class="container my-100">
+    <h2 class="tit fs-5 text-center text-muted">게시글 등록</h2>
     <PostForm
       v-model:name="form.name"
       v-model:title="form.title"
