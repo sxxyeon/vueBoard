@@ -57,7 +57,7 @@
           <select
             :value="Number(limit)"
             class="form-select"
-            @input="$emit('update:limit', $event.target.value)"
+            @input="$emit('update:limit', Number($event.target.value))"
           >
             <option value="9">9개씩</option>
             <option value="6">6개씩</option>
