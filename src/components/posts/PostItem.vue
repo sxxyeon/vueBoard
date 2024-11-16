@@ -25,7 +25,7 @@
         </div>
         <div>
           <h6 v-if="name" class="fz-sm mb-2 text-muted">
-            <span>{{ typeText(type) }}</span> • by{{ name }}
+            <span>{{ typeText(type) }}</span> • by {{ name }}
           </h6>
           <h6 class="card-title fw-bold">{{ title }}</h6>
           <p class="card-content text-muted">{{ content }}</p>

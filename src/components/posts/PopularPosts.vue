@@ -1,10 +1,10 @@
 <template>
   <div class="bg-wrap">
-    <h2 class="container fs-5 pt-5 text-white fw-semibold">
+    <h2 class="container fs-5 pt-4 pt-md-5 text-white fw-semibold">
       오늘의 인기포스트
     </h2>
     <Swiper
-      class="pt-3 pb-5 px-5 popular_swiper"
+      class="pt-0 pt-md-3 pb-4 pb-md-5 px-3 px-md-5 popular_swiper"
       :modules="[Autoplay, Navigation, Pagination]"
       :slides-per-view="1"
       :slides-per-group="1"

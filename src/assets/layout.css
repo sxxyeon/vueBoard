@@ -166,6 +166,7 @@ li {
 
 /* pagination */
 .popular_swiper .swiper-pagination {
+  display: none;
   bottom: 15px !important;
 }
 .popular_swiper .swiper-pagination-bullet {
@@ -174,4 +175,9 @@ li {
 }
 .popular_swiper .swiper-pagination-bullet-active {
   background: #fff;
+}
+@media (min-width: 900px) {
+  .popular_swiper .swiper-pagination {
+    display: block;
+  }
 }
